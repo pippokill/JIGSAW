@@ -1,0 +1,67 @@
+JIGSAW - knowledge-based algorithm for Word Sense Disambiguation
+
+author: Pierpaolo Basile <pierpaolo.basile@gmail.com>
+
+If you use this software in writing scientific papers, or you use this
+software in any other medium serving scientists or students (e.g. web-sites,
+CD-ROMs) please include the citation:
+
+P. Basile, M. Degemmis, A. Gentile, P. Lops, and G. Semeraro. UNIBA:
+JIGSAW Algorithm for Word Sense Disambiguation. In Proceedings of the 4th ACL
+2007 International Worshop on Semantic Evaluations (SemEval-2007), pages 398–401.
+Association for Computational Linguistics (ACL), 2007.
+
+@InProceedings{basile-EtAl:2007:SemEval-2007,
+  author    = {Basile, Pierpaolo  and  de Gemmis, Marco  and  Gentile, Anna Lisa  and  Lops, Pasquale  and  Semeraro, Giovanni},
+  title     = {UNIBA: JIGSAW algorithm for Word Sense Disambiguation},
+  booktitle = {Proceedings of the Fourth International Workshop on Semantic Evaluations (SemEval-2007)},
+  month     = {June},
+  year      = {2007},
+  address   = {Prague, Czech Republic},
+  publisher = {Association for Computational Linguistics},
+  pages     = {398--401},
+  url       = {http://www.aclweb.org/anthology/S/S07/S07-1088}
+}
+
+Paper is available on line: http://aclweb.org/anthology-new/S/S07/S07-1088.pdf
+
+-------------------------------------------------------------------------------------------
+
+JIGSAW is a knowledge-based Word Sense Disambiguation (WSD) system that attemps to disambiguate
+all words in a text by exploiting WordNet senses. The main assumption is that a speciﬁc strategy for each
+Part-Of-Speech (POS) is better than a single strategy.
+
+In order to run JIGSAW, you must execute the script jigsaw.sh in the /bin directory. The script requires the following parameters:
+
+-cf <configuration file>, the configuration file is available in /resources/jigsaw.properties
+
+-i <input file>, the file which contains the text that will be disambiguated
+
+-o <output file>, the file in which you want to save the output. This parameter is optional, the standard output is used if you omit it
+
+-m tokenized|tagged, the format of the input text. tokenized, one token per line. tagged, one token per line with pos-tag. This parameter 
+is optional, non-tokenized text is used if you omit it
+
+*CONFIGURATION FILE
+
+This file contains options about JIGSAW. One option per line. The option is the formate <option>=<value>. Information about options are reported
+in the configuration file /resources/jigsaw.properties
+
+*INPUT FILE
+
+You can use three different formats:
+
+-non-tokenized text
+
+-tokenized text: one token per line
+
+-tagged: one token per line with pos-tag in the following format: word.postag. The postag is a characted which indicates the part-of-speech of the word.
+	 You can use five types of pos-tag: n for nouns, v for verbs, a for adjectives, r for adverbs and o for other part-of speech.
+
+*OUTPUT FILE
+The output reports one token per line. Each token is followed by the stem, part-of-speech, lemma and the WSD output.
+	 
+
+
+
+
