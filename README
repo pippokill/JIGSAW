@@ -55,7 +55,7 @@ You can use three different formats:
 -tokenized text: one token per line
 
 -tagged: one token per line with pos-tag in the following format: word.postag. The postag is a character which indicates the part-of-speech of the word.
-	 You can use five types of pos-tag: n for nouns, v for verbs, a for adjectives, r for adverbs and o for other part-of speech.
+	 You can use five types of pos-tag: n for nouns, v for verbs, a for adjectives, r for adverbs and o for other part-of speech tags.
 
 *OUTPUT FILE
 The output reports one token per line. Each token is followed by the stem, part-of-speech, lemma and the WSD output.
@@ -67,6 +67,15 @@ In order to use WordNet, you must configure the file ./resources/wn_file_propert
 <param name="dictionary_path" value="/home/user/WordNet/3.0/dict/"/>
 
 Inser into the attribute value the directory in which the WordNet dictionary is installed.
+
+*EXAMPLES
+The test directory contains some input/output file in different formats. Some command line examples are reported:
+
+./jigsaw.sh -cf ../resources/jigsaw.properties -i ../test/non-tokenized
+
+./jigsaw.sh -cf ../resources/jigsaw.properties -i ../test/tokenized -m tokenized
+
+./jigsaw.sh -cf ../resources/jigsaw.properties -i ../test/tagged -m tagged
 
 	 
 
