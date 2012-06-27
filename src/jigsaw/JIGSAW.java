@@ -1,42 +1,68 @@
-/*
- * SynsMapper.java
- *
- * Created on 3 maggio 2005, 10.23
- */
+/**
+   Copyright (c) 2012, the JIGSAW AUTHORS.
+
+   All rights reserved.
+
+   Redistribution and use in source and binary forms, with or without
+   modification, are permitted provided that the following conditions are
+   met:
+
+ * Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+
+ * Redistributions in binary form must reproduce the above
+   copyright notice, this list of conditions and the following
+   disclaimer in the documentation and/or other materials provided
+   with the distribution.
+
+ * Neither the name of the University of Pittsburgh nor the names
+   of its contributors may be used to endorse or promote products
+   derived from this software without specific prior written
+   permission.
+
+   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+   A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+   EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+   PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+   PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+   LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+   NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ **/
+
 package jigsaw;
 
-import jigsaw.nlp.SimpleTextProcessing;
-import jigsaw.utils.CommandUtils;
-import jigsaw.data.Token;
-import jigsaw.data.TokenGroup;
-import jigsaw.wn.Tag2Wn;
-import jigsaw.wn.WordNet;
 import java.io.*;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import jigsaw.data.Token;
+import jigsaw.data.TokenGroup;
+import jigsaw.nlp.SimpleTextProcessing;
+import jigsaw.utils.CommandUtils;
+import jigsaw.wn.Tag2Wn;
+import jigsaw.wn.WordNet;
 import net.sf.extjwnl.data.PointerType;
 
 /**
- * This class implements JIGSAW algorithm for disambiguation text. (Revision for
- * Senseval-4/Semeval-1: -fix some bug in Lesk algorithm -add long and short
- * synset description in output )
+ * This class implements JIGSAW algorithm for Word Sense Disambiguation.
+ * (Revision for Semeval-1/EVALITA 2007)
+ * -fixed some bugs in Lesk algorithm
+ * -added long and short output
+ * -added ZIPF distribution in synset rank computation
  *
  * @author Basile Pierpaolo
  */
 public class JIGSAW {
 
-    /**
-     * SIM_WEIGTH measure
-     */
+   
     public static final int SIM_WEIGTH = 0;
-    /**
-     * SIM_OCCURENCE measure
-     */
+   
     public static final int SIM_OCCURENCE = 1;
-    /**
-     * SIM_TFIDF measure
-     */
+    
     public static final int SIM_TFIDF = 2;
     private Properties props;
     private WordNet wordNet = null;

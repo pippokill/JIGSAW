@@ -1,149 +1,161 @@
-/*
- * Token.java
- *
- * Created on 3 maggio 2005, 10.33
- */
+/**
+   Copyright (c) 2012, the JIGSAW AUTHORS.
 
+   All rights reserved.
+
+   Redistribution and use in source and binary forms, with or without
+   modification, are permitted provided that the following conditions are
+   met:
+
+ * Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+
+ * Redistributions in binary form must reproduce the above
+   copyright notice, this list of conditions and the following
+   disclaimer in the documentation and/or other materials provided
+   with the distribution.
+
+ * Neither the name of the University of Pittsburgh nor the names
+   of its contributors may be used to endorse or promote products
+   derived from this software without specific prior written
+   permission.
+
+   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+   A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+   EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+   PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+   PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+   LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+   NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ **/
 package jigsaw.data;
 
 /**
- * This class holds all information on a token. This informations are used by word sense disambiguation.
- * @author Basile Pierpaolo and Grieco Franco
+ * This class stores information about a token.
+ * @author Basile Pierpaolo
  */
 public class Token {
     
     /**
-     * Holds value of property token.
+     * Token value
      */
     private String token;
     
     /**
-     * Holds value of property position.
+     * Token position in the text
      */
     private int position;
     
     /**
-     * Holds value of property syns.
+     * Token synsets
      */
     private String[] syns;
     
     /**
-     * Holds value of property syn.
+     * Token synset assigned by WSD algorithm
      */
     private String syn=null;
     
     /**
-     * Holds value of property groupPosition.
+     * Token position in the TokenGroup
      */
     private int groupPosition;
     
+    /**
+     * Token pos-tag
+     */
     private String posTag;
     
-    /**
-     * Holds value of property stem.
+   /**
+     * Token stem
      */
     private String stem;
     
+    /**
+     * Token lemma
+     */
     private String lemma;
     
-    /** Creates a new instance of Token */
+    /** Creates a new instance*/
     public Token() {
     }
     
+ 
+    
+    
+
     /**
-     * Getter for property token.
-     * @return Value of property token.
+     * @return the token
      */
     public String getToken() {
-        return this.token;
+        return token;
     }
-    
+
     /**
-     * Setter for property token.
-     * @param token New value of property token.
+     * @param token the token to set
      */
     public void setToken(String token) {
         this.token = token;
     }
-    
+
     /**
-     * Getter for property position.
-     * @return Value of property position.
+     * @return the position
      */
     public int getPosition() {
-        return this.position;
+        return position;
     }
-    
+
     /**
-     * Setter for property position.
-     * @param position New value of property position.
+     * @param position the position to set
      */
     public void setPosition(int position) {
         this.position = position;
     }
-    
+
     /**
-     * Getter for property syns.
-     * @return Value of property syns.
+     * @return the syns
      */
     public String[] getSyns() {
-        return this.syns;
+        return syns;
     }
-    
+
     /**
-     * Setter for property syns.
-     * @param syns New value of property syns.
+     * @param syns the syns to set
      */
     public void setSyns(String[] syns) {
         this.syns = syns;
     }
-    
+
     /**
-     * Getter for property syn.
-     * @return Value of property syn.
+     * @return the syn
      */
     public String getSyn() {
-        return this.syn;
+        return syn;
     }
-    
+
     /**
-     * Setter for property syn.
-     * @param syn New value of property syn.
+     * @param syn the syn to set
      */
     public void setSyn(String syn) {
         this.syn = syn;
     }
-    
+
     /**
-     * Getter for property groupPosition.
-     * @return Value of property groupPosition.
+     * @return the groupPosition
      */
     public int getGroupPosition() {
-        return this.groupPosition;
+        return groupPosition;
     }
-    
+
     /**
-     * Setter for property groupPosition.
-     * @param groupPosition New value of property groupPosition.
+     * @param groupPosition the groupPosition to set
      */
     public void setGroupPosition(int groupPosition) {
         this.groupPosition = groupPosition;
-    }
-    
-    /**
-     * Getter for property stem.
-     * @return Value of property stem.
-     */
-    public String getStem() {
-        return this.stem;
-    }
-    
-    /**
-     * Setter for property stem.
-     * @param stem New value of property stem.
-     */
-    public void setStem(String stem) {
-        this.stem = stem;
     }
 
     /**
@@ -158,6 +170,20 @@ public class Token {
      */
     public void setPosTag(String posTag) {
         this.posTag = posTag;
+    }
+
+    /**
+     * @return the stem
+     */
+    public String getStem() {
+        return stem;
+    }
+
+    /**
+     * @param stem the stem to set
+     */
+    public void setStem(String stem) {
+        this.stem = stem;
     }
 
     /**

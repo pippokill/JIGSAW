@@ -1,8 +1,37 @@
-/*
- * DefaultWordNet.java
- *
- * Created on 29 aprile 2005, 11.17
- */
+/**
+   Copyright (c) 2012, the JIGSAW AUTHORS.
+
+   All rights reserved.
+
+   Redistribution and use in source and binary forms, with or without
+   modification, are permitted provided that the following conditions are
+   met:
+
+ * Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+
+ * Redistributions in binary form must reproduce the above
+   copyright notice, this list of conditions and the following
+   disclaimer in the documentation and/or other materials provided
+   with the distribution.
+
+ * Neither the name of the University of Pittsburgh nor the names
+   of its contributors may be used to endorse or promote products
+   derived from this software without specific prior written
+   permission.
+
+   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+   A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+   EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+   PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+   PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+   LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+   NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ **/
 package jigsaw.wn;
 
 import java.io.File;
@@ -15,7 +44,7 @@ import net.sf.extjwnl.data.*;
 import net.sf.extjwnl.dictionary.Dictionary;
 
 /**
- * This class contains all methods need to access WordNet.
+ * This class implements methods to access the WordNet knowledge-base.
  *
  * @author Basile Pierpaolo and Grieco Franco
  */
@@ -28,7 +57,8 @@ public class WordNet {
     private Dictionary dictionary = null;
 
     /**
-     * Creates a new instance of DefaultWordNet
+     * Creates a new instance 
+     *
      */
     public WordNet() {
     }
@@ -52,14 +82,14 @@ public class WordNet {
     }
 
     /**
-     * Return depth by relation and offset
+     * Compute the min-distance between two synsets
      *
-     * @param s1 First offset
-     * @param s2 Second offset
+     * @param s1 First synset offset
+     * @param s2 Second synset offset
      * @param pos Pos tagger information
      * @param relation Relation type
      * @throws Exception Exception
-     * @return Depth
+     * @return Distance
      */
     public int getDepthByOffset(String s1, String s2, String pos, PointerType relation) {
         try {
@@ -86,15 +116,15 @@ public class WordNet {
     }
 
     /**
-     * Return depth by relation and offset, but don't get over maxDepth
+     * Compute the min-distance between two synsets, but limiting the search to maxDepth
      *
-     * @param s1 First offset
-     * @param s2 Second offset
+     * @param s1 First synset offset
+     * @param s2 Second synset offset
      * @param pos Pos tagger information
      * @param relation Relation type
      * @param maxDepth Max depth
      * @throws Exception Exception
-     * @return Depth
+     * @return Distance
      */
     public int getDepthByOffset(String s1, String s2, String pos, PointerType relation, int maxDepth) {
         try {
@@ -181,13 +211,12 @@ public class WordNet {
     }
 
     /**
-     * Return the wordnet tag from word. If word not have a sense, this method
-     * return -1.
+     * Return the pos-tag of the word
      *
      * @param word Word
      * @param loolup Set lookup mode true/false
      * @throws Exception Exception
-     * @return Wordnet tag
+     * @return pos-tag
      */
     public String hasAnySyns(String word, boolean lookup) throws Exception {
         try {
@@ -220,10 +249,9 @@ public class WordNet {
     }
 
     /**
-     * Return all synsets by word
+     * Return all synset offsets by word
      *
-     * @return Synsets. Array of strings, each string contains a synset unique
-     * identify (synset offset).
+     * @return Array of strings, each string represents a synset offset
      * @param word Word
      * @param pos Pos-tagger information
      */
@@ -247,10 +275,10 @@ public class WordNet {
     }
 
     /**
-     * Init wordnet
+     * Init WordNet
      *
      * @throws Exception Exception
-     * @return true - init ok false - init problem
+     * @return 
      */
     public boolean init(File configFile) throws Exception {
         try {
@@ -263,11 +291,11 @@ public class WordNet {
     }
 
     /**
-     * Return the lemma's words wich are contained in synset offset
+     * Return a string which contains all lemmas assigned to a synset
      *
      * @param offset Sysnet offset
      * @param pos POS-tag
-     * @return String of all lemma's words wich are contained in synset offset
+     * @return String
      */
     public String getAllWordsInSynset(String offset, String pos) {
 
@@ -302,14 +330,13 @@ public class WordNet {
     }
 
     /**
-     * Return a string wich contains all lemma's word that appertain to all
-     * synsets in relation with specified synset.
+     * Return a string which contains all lemmas assigned to synsets related to a specific synset
      *
      * @param offset Synset offset
      * @param pos POS-tag offset
      * @param relation Relation type
-     * @param depth Max depth
-     * @return String wich contains all lemma's word
+     * @param depth Max depth (max distance in WordNet)
+     * @return String
      */
     public String getRelationElement(String offset, String pos, PointerType pointerType, int depth, boolean lemma) {
         StringBuilder buf = new StringBuilder();
@@ -353,16 +380,15 @@ public class WordNet {
     }
 
     /**
-     * Return an ArrayList that contains WnNode objects wich are in
-     * relation with offset. The search start to start_depth. When this method
-     * are called start_depth must be equal to depth.
+     * Return a List which contains WnNodes (WordNet node) which are in
+     * relation with a sysnet. The search start from start_depth.
      *
      * @param offset Sysnet offset
      * @param pos POS-tag
      * @param relation Relation type
-     * @param depth Recorsive depth
+     * @param depth Current depth
      * @param start_depth Start depth
-     * @return ArrayList of {@link nlp.wordNet.types.WnNode}
+     * @return List of {@link nlp.wordNet.types.WnNode}
      */
     public List<WnNode> getAllRelationNode(String offset, String pos, PointerType pointerType, int depth, int start_depth) {
         List<WnNode> result = new ArrayList<WnNode>();
@@ -396,15 +422,13 @@ public class WordNet {
     }
 
     /**
-     * Return the common element in relation with o1 and o2, but don't get over
-     * depth.
-     *
+     * Return the common synsets in relation with o1 and o2 limiting the search to depth
      * @param o1 Synset offset
      * @param o2 Synset offset
      * @param pos POS-tag
      * @param relation Relation type
      * @param depth Max depth
-     * @return The common element in relation with o1 and o2
+     * @return The common synsets in relation with o1 and o2
      */
     public String[] getCommon(String o1, String o2, String pos, PointerType relation, int depth) {
         String[] result = new String[2];
@@ -473,13 +497,13 @@ public class WordNet {
     }
 
     /**
-     * Return true if start word is a hypernym of end word else false
+     * Return true if the start synset is an hypernym of the end sysnet, otherwise return false
      *
-     * @param start Start word
-     * @param end End word
-     * @param pos Wordnet tag
+     * @param start Start synset offset
+     * @param end End synset offset
+     * @param pos POS-tag
      * @throws Exception Exception
-     * @return true if start word is a hypernym of end word else false
+     * @return true/false
      */
     public boolean isHypernym(String start, String end, String pos) throws Exception {
         try {
@@ -496,10 +520,10 @@ public class WordNet {
     }
 
     /**
-     * Return the synset decription by offset
+     * Return the synset decription
      *
      * @param offset Synset offset
-     * @param pos Wordnet tag
+     * @param pos POS tag
      * @return Synset description
      */
     public String getAllDescriptionByOffset(String offset, String pos) {
@@ -513,10 +537,10 @@ public class WordNet {
     }
 
     /**
-     * Return the synset gloss by offset
+     * Return the synset gloss
      *
      * @param offset Synset offset
-     * @param pos Wordnet tag
+     * @param pos POS tag
      * @return Synset description
      */
     public String getAllGlossByOffset(String offset, String pos) {
@@ -530,11 +554,10 @@ public class WordNet {
     }
 
     /**
-     * Return the synset normalize decription by offset. The normalize
-     * description is the synset gloss.
+     * Return the synset normalized decription
      *
      * @param offset Synset offset
-     * @param pos Wordnet tag
+     * @param pos POS tag
      * @return Synset description
      */
     public String getNormalizeDescriptionByOffset(String offset, String pos) {
@@ -552,10 +575,10 @@ public class WordNet {
     }
 
     /**
-     * Return average polysemy for this wordnet tag
+     * Return average polysemy
      *
-     * @param posTag Wordnet tag
-     * @return Average polysemy for this wordnet tag
+     * @param posTag POS tag
+     * @return Average polysemy
      */
     public double getAveragePolisemy(String posTag) {
         if (posTag.equals("n")) {

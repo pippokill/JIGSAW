@@ -1,9 +1,37 @@
-/*
- * WnNode.java
- *
- * Created on 3 giugno 2005, 16.56
- */
+/**
+   Copyright (c) 2012, the JIGSAW AUTHORS.
 
+   All rights reserved.
+
+   Redistribution and use in source and binary forms, with or without
+   modification, are permitted provided that the following conditions are
+   met:
+
+ * Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+
+ * Redistributions in binary form must reproduce the above
+   copyright notice, this list of conditions and the following
+   disclaimer in the documentation and/or other materials provided
+   with the distribution.
+
+ * Neither the name of the University of Pittsburgh nor the names
+   of its contributors may be used to endorse or promote products
+   derived from this software without specific prior written
+   permission.
+
+   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+   A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+   EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+   PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+   PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+   LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+   NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ **/
 package jigsaw.wn;
 
 /**
@@ -13,7 +41,7 @@ package jigsaw.wn;
 public class WnNode {
     
     /**
-     * Holds value of property offset.
+     * Synset offset
      */
     private String offset;
 
@@ -26,7 +54,7 @@ public class WnNode {
             return false;
         }
         final WnNode other = (WnNode) obj;
-        if ((this.offset == null) ? (other.offset != null) : !this.offset.equals(other.offset)) {
+        if ((this.getOffset() == null) ? (other.getOffset() != null) : !this.offset.equals(other.offset)) {
             return false;
         }
         return true;
@@ -35,14 +63,14 @@ public class WnNode {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 89 * hash + (this.offset != null ? this.offset.hashCode() : 0);
+        hash = 89 * hash + (this.getOffset() != null ? this.getOffset().hashCode() : 0);
         return hash;
     }
     
     
     
     /**
-     * Holds value of property depth.
+     * Synset depth
      */
     private int depth;
     
@@ -50,33 +78,39 @@ public class WnNode {
     public WnNode() {
     }
     
-    /**
-     * Getter for property depth.
-     * @return Value of property depth.
-     */
-    public int getDepth() {
-        return this.depth;
-    }
     
-    /**
-     * Setter for property depth.
-     * @param depth New value of property depth.
-     */
-    public void setDepth(int depth) {
-        this.depth = depth;
+
+    @Override
+    public String toString() {
+        return this.getOffset()+" "+this.getDepth();
     }
 
+    /**
+     * @return the offset
+     */
     public String getOffset() {
         return offset;
     }
 
+    /**
+     * @param offset the offset to set
+     */
     public void setOffset(String offset) {
         this.offset = offset;
     }
 
-    @Override
-    public String toString() {
-        return this.offset+" "+this.depth;
+    /**
+     * @return the depth
+     */
+    public int getDepth() {
+        return depth;
+    }
+
+    /**
+     * @param depth the depth to set
+     */
+    public void setDepth(int depth) {
+        this.depth = depth;
     }
     
     
