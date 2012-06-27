@@ -75,36 +75,19 @@ public class JIGSAW {
     private boolean shortOutput = false;
     private boolean posTagNotation = false;
     private double cut = -1.0d;
-    /**
-     * Holds value of property commonDepth.
-     */
     private int commonDepth = 2;
-    /**
-     * Holds value of property alfa.
-     */
+  
     private double alfa;
-    /**
-     * Holds value of property beta.
-     */
     private double beta;
-    /**
-     * Holds value of property theta.
-     */
     private double theta;
-    /**
-     * Holds value of property sigma.
-     */
     private double sigma;
-    /**
-     * Holds value of property lookGram.
-     */
     private int lookGram;
     private static final double s_verb = 1.977;
     private static final double s_noun = 2.688;
     private static final double s_adj = 2.855;
 
     /**
-     * Creates a new instance of JIGSAW
+     * Creates a new instance
      */
     public JIGSAW(File configFile) {
         try {
@@ -177,13 +160,12 @@ public class JIGSAW {
     }
 
     /**
-     * Generate context.
+     * Generate context
      *
-     * @param tokens Token group that contains tokens
-     * @param offset Start offset
-     * @param insertTarget Indicate if necessary to insert target word in
-     * context.
-     * @return TokenGroup which conntains context tokens
+     * @param tokens Token group which contains tokens
+     * @param offset Start offset in the sentence
+     * @param insertTarget Add target word to the context.
+     * @return TokenGroup the context
      */
     public TokenGroup getContext(TokenGroup tokens, int offset, boolean insertTarget) {
 
@@ -307,10 +289,10 @@ public class JIGSAW {
     }
 
     /**
-     * Generate context.
+     * Generate context
      *
-     * @param tokens Token group that contains tokens
-     * @return TokenGroup which conntains context tokens
+     * @param tokens Token group which contains tokens
+     * @return TokenGroup the context
      */
     public TokenGroup getNouns(TokenGroup tokens) {
         TokenGroup result = new TokenGroup();
@@ -599,7 +581,8 @@ public class JIGSAW {
             return "U";
         }
     }
-
+    
+    //NOT USED 
     private double simVerbNoun(String offset, int indexSyn, Token target, TokenGroup verbs) {
         try {
             double maxPhi = -Double.MAX_VALUE;
@@ -1034,11 +1017,9 @@ public class JIGSAW {
     }
 
     /**
-     * Set syn to tokens in token group.
+     * Disambiguate the token group
      *
      * @param tg Token group
-     * @param lemmas Array of stem
-     * @throws Exception Exception
      */
     public void setSyn(TokenGroup tg) {
         try {
@@ -1078,11 +1059,11 @@ public class JIGSAW {
     }
 
     /**
-     * Set syn to token in token group.
+     * Disambiguate a specific word
      *
      * @param tg Token group
-     * @param lemmas Array of stem
-     * @param index Token's index.
+     * @param lemmas List of lemmas
+     * @param index Word position in the token group
      * @throws Exception Exception
      */
     public void setSyn(TokenGroup tg, List lemmas, int index) {
@@ -1150,17 +1131,7 @@ public class JIGSAW {
         return sb.toString().trim();
     }
 
-    /**
-     * Found n-gram in text.
-     *
-     * @param input Tokenized text.
-     * @param pos Array of POS-tag
-     * @param lemmas Array of stem
-     * @param position Array of positions
-     * @param lang Language
-     * @throws Exception Exception
-     * @return New tokenized text with n-gram
-     */
+    //NOT USED
     public List<String> foundNGram(String text) throws Exception {
         List<String> list = new ArrayList<String>();
         if (text == null) {
@@ -1321,191 +1292,87 @@ public class JIGSAW {
         return tg;
     }
 
-    /**
-     * Getter for property verbose.
-     *
-     * @return Value of property verbose.
-     */
+   
     public boolean isVerbose() {
         return verbose;
     }
-
-    /**
-     * Setter for property verbose.
-     *
-     * @param verbose New value of property verbose.
-     */
+    
     public void setVerbose(boolean verbose) {
         this.verbose = verbose;
     }
-
-    /**
-     * Getter for property radius.
-     *
-     * @return Value of property radius.
-     */
+    
     public int getRadius() {
         return radius;
     }
 
-    /**
-     * Setter for property radius.
-     *
-     * @param radius New value of property radius.
-     */
     public void setRadius(int radius) {
         this.radius = radius;
     }
-
-    /**
-     * Getter for property depth.
-     *
-     * @return Value of property depth.
-     */
+    
     public int getDepth() {
         return depth;
     }
-
-    /**
-     * Setter for property depth.
-     *
-     * @param depth New value of property depth.
-     */
+    
     public void setDepth(int depth) {
         this.depth = depth;
     }
 
-    /**
-     * Setter for property measure.
-     *
-     * @param measure New value of property measure.
-     */
     public void setMisure(int misure) {
         this.measure = misure;
     }
-
-    /**
-     * Getter for property maxVerb.
-     *
-     * @return Value of property maxVerb.
-     */
+    
     public int getMaxVerb() {
         return maxVerb;
     }
-
-    /**
-     * Setter for property maxVerb.
-     *
-     * @param maxVerb New value of property maxVerb.
-     */
+    
     public void setMaxVerb(int maxVerb) {
         this.maxVerb = maxVerb;
     }
-
-    /**
-     * Getter for property commonDepth.
-     *
-     * @return Value of property commonDepth.
-     */
+    
     public int getCommonDepth() {
         return this.commonDepth;
     }
-
-    /**
-     * Setter for property commonDepth.
-     *
-     * @param commonDepth New value of property commonDepth.
-     */
+    
     public void setCommonDepth(int commonDepth) {
         this.commonDepth = commonDepth;
     }
-
-    /**
-     * Getter for property alfa.
-     *
-     * @return Value of property alfa.
-     */
+    
     public double getAlfa() {
         return this.alfa;
     }
 
-    /**
-     * Setter for property alfa.
-     *
-     * @param alfa New value of property alfa.
-     */
     public void setAlfa(double alfa) {
         this.alfa = alfa;
     }
 
-    /**
-     * Getter for property beta.
-     *
-     * @return Value of property beta.
-     */
     public double getBeta() {
         return this.beta;
     }
-
-    /**
-     * Setter for property beta.
-     *
-     * @param beta New value of property beta.
-     */
+    
     public void setBeta(double beta) {
         this.beta = beta;
     }
-
-    /**
-     * Getter for property theta.
-     *
-     * @return Value of property theta.
-     */
+    
     public double getTheta() {
         return this.theta;
     }
-
-    /**
-     * Setter for property theta.
-     *
-     * @param theta New value of property theta.
-     */
+    
     public void setTheta(double theta) {
         this.theta = theta;
     }
-
-    /**
-     * Getter for property sigma.
-     *
-     * @return Value of property sigma.
-     */
+    
     public double getSigma() {
         return sigma;
     }
-
-    /**
-     * Setter for property sigma.
-     *
-     * @param sigma New value of property sigma.
-     */
+    
     public void setSigma(double sigma) {
         this.sigma = sigma;
     }
 
-    /**
-     * Getter for property lookGram.
-     *
-     * @return Value of property lookGram.
-     */
     public int getLookGram() {
         return lookGram;
     }
-
-    /**
-     * Setter for property lookGram.
-     *
-     * @param lookGram New value of property lookGram.
-     */
+    
     public void setLookGram(int lookGram) {
         this.lookGram = lookGram;
     }
