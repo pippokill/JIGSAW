@@ -8,7 +8,7 @@ CD-ROMs) please include the citation:
 
 P. Basile, M. Degemmis, A. Gentile, P. Lops, and G. Semeraro. UNIBA:
 JIGSAW Algorithm for Word Sense Disambiguation. In Proceedings of the 4th ACL
-2007 International Worshop on Semantic Evaluations (SemEval-2007), pages 398–401.
+2007 International Workshop on Semantic Evaluations (SemEval-2007), pages 398–401.
 Association for Computational Linguistics (ACL), 2007.
 
 @InProceedings{basile-EtAl:2007:SemEval-2007,
@@ -27,7 +27,7 @@ Paper is available on line: http://aclweb.org/anthology-new/S/S07/S07-1088.pdf
 
 -------------------------------------------------------------------------------------------
 
-JIGSAW is a knowledge-based Word Sense Disambiguation (WSD) system that attemps to disambiguate
+JIGSAW is a knowledge-based Word Sense Disambiguation (WSD) system that attempts to disambiguate
 all words in a text by exploiting WordNet senses. The main assumption is that a speciﬁc strategy for each
 Part-Of-Speech (POS) is better than a single strategy.
 
@@ -55,7 +55,7 @@ You can use three different formats:
 
 -tokenized text: one token per line
 
--tagged: one token per line with pos-tag in the following format: word.postag. The postag is a characted which indicates the part-of-speech of the word.
+-tagged: one token per line with pos-tag in the following format: word.postag. The postag is a character which indicates the part-of-speech of the word.
 	 You can use five types of pos-tag: n for nouns, v for verbs, a for adjectives, r for adverbs and o for other part-of speech.
 
 *OUTPUT FILE
