@@ -58,24 +58,27 @@ You can use three different formats:
 	 You can use five types of pos-tag: n for nouns, v for verbs, a for adjectives, r for adverbs and o for other part-of speech tags.
 
 *OUTPUT FILE
+
 The output reports one token per line. Each token is followed by the stem, part-of-speech, lemma and the WSD output.
 
 *WORDNET
+
 JIGSAW relies on WordNet as knowledge base. You can download WordNet from http://wordnet.princeton.edu/wordnet/download/.
 In order to use WordNet, you must configure the file ./resources/wn_file_properties.xml. In particular you must change the following line:
 
 <param name="dictionary_path" value="/home/user/WordNet/3.0/dict/"/>
 
-Inser into the attribute value the directory in which the WordNet dictionary is installed.
+Change the attribute value and set the directory in which the WordNet dictionary is installed.
 
 *EXAMPLES
-The test directory contains some input/output file in different formats. Some command line examples are reported:
 
-./jigsaw.sh -cf ../resources/jigsaw.properties -i ../test/non-tokenized
+The test directory contains some input/output files in different formats. Some command lines are reported here:
 
-./jigsaw.sh -cf ../resources/jigsaw.properties -i ../test/tokenized -m tokenized
+./jigsaw.sh -cf ../resources/jigsaw.properties -i ../test/non-tokenized -o ../test/non-tokenized.jigsaw
 
-./jigsaw.sh -cf ../resources/jigsaw.properties -i ../test/tagged -m tagged
+./jigsaw.sh -cf ../resources/jigsaw.properties -i ../test/tokenized -m tokenized -o ../test/tokenized.jigsaw
+
+./jigsaw.sh -cf ../resources/jigsaw.properties -i ../test/tagged -m tagged -o ../test/tagged.jigsaw
 
 	 
 
