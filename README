@@ -1,6 +1,6 @@
-JIGSAW - knowledge-based algorithm for Word Sense Disambiguation
+JIGSAW, a knowledge-based algorithm for Word Sense Disambiguation
 
-author: Pierpaolo Basile <pierpaolo.basile@gmail.com>
+Author/developer: Pierpaolo Basile <pierpaolo.basile@gmail.com>
 
 If you use this software in writing scientific papers, or you use this
 software in any other medium serving scientists or students (e.g. web-sites,
@@ -27,11 +27,10 @@ Paper is available on line: http://aclweb.org/anthology-new/S/S07/S07-1088.pdf
 
 -------------------------------------------------------------------------------------------
 
-JIGSAW is a knowledge-based Word Sense Disambiguation (WSD) system that attempts to disambiguate
-all words in a text by exploiting WordNet senses. The main assumption is that a speciﬁc strategy for each
-Part-Of-Speech (POS) is better than a single strategy.
+JIGSAW is a knowledge-based Word Sense Disambiguation (WSD) system that attempts to disambiguate all words in a text by exploiting WordNet senses.
+The main assumption is that a speciﬁc strategy for each Part-Of-Speech (POS) is better than a single strategy.
 
-In order to run JIGSAW, you must execute the script jigsaw.sh in the /bin directory. The script requires the following parameters:
+In order to run JIGSAW, you must execute the script jigsaw.sh in the ./bin directory. The script requires the following parameters:
 
 -cf <configuration file>, the configuration file is available in /resources/jigsaw.properties
 
@@ -44,8 +43,8 @@ is optional, non-tokenized text is used if you omit it
 
 *CONFIGURATION FILE
 
-This file contains options about JIGSAW. One option per line. The option is the formate <option>=<value>. Information about options are reported
-in the configuration file /resources/jigsaw.properties
+This file contains options about JIGSAW. One option per line. The option is in the following format <option>=<value>. Information about options are reported
+into the configuration file: ./resources/jigsaw.properties
 
 *INPUT FILE
 
@@ -60,6 +59,15 @@ You can use three different formats:
 
 *OUTPUT FILE
 The output reports one token per line. Each token is followed by the stem, part-of-speech, lemma and the WSD output.
+
+*WORDNET
+JIGSAW relies on WordNet as knowledge base. You can download WordNet from http://wordnet.princeton.edu/wordnet/download/.
+In order to use WordNet, you must configure the file ./resources/wn_file_properties.xml. In particular you must change the following line:
+
+<param name="dictionary_path" value="/home/user/WordNet/3.0/dict/"/>
+
+Inser into the attribute value the directory in which the WordNet dictionary is installed.
+
 	 
 
 
