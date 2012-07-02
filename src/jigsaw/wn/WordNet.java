@@ -574,28 +574,6 @@ public class WordNet {
         }
     }
 
-    /**
-     * Return average polysemy
-     *
-     * @param posTag POS tag
-     * @return Average polysemy
-     */
-    public double getAveragePolisemy(String posTag) {
-        if (posTag.equals("n")) {
-            return 2.79;
-        }
-        if (posTag.equals("v")) {
-            return 3.66;
-        }
-        if (posTag.equals("a")) {
-            return 2.80;
-        }
-        if (posTag.equals("r")) {
-            return 2.49;
-        }
-        return 0;
-    }
-
     public void destroy() {
         dictionary.close();
     }

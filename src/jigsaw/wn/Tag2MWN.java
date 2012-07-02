@@ -32,53 +32,25 @@
    NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
-package jigsaw.mwn;
-
-import java.util.List;
+package jigsaw.wn;
 
 /**
  *
- * @author Pierpaolo Basile
+ * @author pierpaolo
  */
-public class MWNWord {
-    
-    private String word;
-    
-    private List<MWNSynset> concepts;
+public class Tag2MWN {
 
-    public MWNWord(String word, List<MWNSynset> concepts) {
-        this.word = word;
-        this.concepts = concepts;
+    public static String getPos(String posTag) {
+        if (posTag.startsWith("S")) {
+            return "n";
+        } else if (posTag.startsWith("V")) {
+            return "v";
+        } else if (posTag.startsWith("B")) {
+            return "r";
+        } else if (posTag.startsWith("A")) {
+            return "a";
+        } else {
+            return "o";
+        }
     }
-    
-    
-
-    /**
-     * @return the word
-     */
-    public String getWord() {
-        return word;
-    }
-
-    /**
-     * @param word the word to set
-     */
-    public void setWord(String word) {
-        this.word = word;
-    }
-
-    /**
-     * @return the concepts
-     */
-    public List<MWNSynset> getConcepts() {
-        return concepts;
-    }
-
-    /**
-     * @param concepts the concepts to set
-     */
-    public void setConcepts(List<MWNSynset> concepts) {
-        this.concepts = concepts;
-    }
-    
 }
