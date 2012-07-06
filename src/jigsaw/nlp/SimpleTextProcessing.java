@@ -44,8 +44,8 @@ import org.tartarus.snowball.SnowballStemmer;
 import org.tartarus.snowball.ext.englishStemmer;
 
 /**
- * This class implements the following NLP steps: tokenization, pos-tagging,
- * stemming and lemamtization
+ * This class implements the following NLP steps: tokenization, pos-tagging and
+ * stemming
  *
  * @author pierpaolo
  */

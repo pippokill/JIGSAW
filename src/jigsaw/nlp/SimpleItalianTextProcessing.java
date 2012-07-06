@@ -33,7 +33,9 @@
 package jigsaw.nlp;
 
 import java.io.*;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import opennlp.tools.postag.POSModel;
 import opennlp.tools.postag.POSTaggerME;
@@ -42,7 +44,7 @@ import org.tartarus.snowball.ext.italianStemmer;
 
 /**
  * This class implements the following NLP steps: tokenization, pos-tagging,
- * stemming and lemamtization
+ * stemming and lemmatizer
  *
  * @author pierpaolo
  */
@@ -52,6 +54,7 @@ public class SimpleItalianTextProcessing {
     private POSTaggerME tagger;
     private Set<String> stopWordSet = new HashSet<String>();
     private ItalianTokenizer tokenizer;
+    private Map<String, String> lemmas;
 
     /**
      *
@@ -82,9 +85,9 @@ public class SimpleItalianTextProcessing {
      * @param stopWordFile
      * @throws Exception
      */
-    public SimpleItalianTextProcessing(File posTagModel, File stopWordFile) throws Exception {
+    public SimpleItalianTextProcessing(File posTagModel, File stopWordFile, File morphItFile) throws Exception {
         stemmer = new italianStemmer();
-        tokenizer=new ItalianTokenizer();
+        tokenizer = new ItalianTokenizer();
         InputStream modelIn2 = new FileInputStream(posTagModel);
         POSModel posModel = new POSModel(modelIn2);
         tagger = new POSTaggerME(posModel);
@@ -95,7 +98,34 @@ public class SimpleItalianTextProcessing {
                 stopWordSet.add(line.toLowerCase());
             }
         }
+        lemmas = new HashMap<String, String>();
+        in = new BufferedReader(new FileReader(morphItFile));
+        while (in.ready()) {
+            String line = in.readLine().trim();
+            String[] split = line.split("[ \t]+");
+            if (split.length == 3) {
+                if (split[2].startsWith("NOUN")) {
+                    lemmas.put(split[0] + ".n", split[1]);
+                } else if (split[2].startsWith("ADJ")) {
+                    lemmas.put(split[0] + ".a", split[1]);
+                } else if (split[2].startsWith("ADV")) {
+                    lemmas.put(split[0] + ".r", split[1]);
+                } else if (split[2].startsWith("VER")) {
+                    lemmas.put(split[0] + ".v", split[1]);
+                }
+            }
+        }
         in.close();
+    }
+
+    public String lemmatize(String token, String posTag) {
+        String key = token + "." + posTag;
+        String lemma = lemmas.get(key);
+        if (lemma != null) {
+            return lemma;
+        } else {
+            return token;
+        }
     }
 
     /**

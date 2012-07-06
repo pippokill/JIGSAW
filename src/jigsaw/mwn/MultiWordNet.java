@@ -55,9 +55,7 @@ public class MultiWordNet {
         this.mwn = mwn;
     }
 
-    public String lemmatize(String word, String pos) throws Exception {
-        return word;
-    }
+   
 
     /**
      * Compute the min-distance between two synsets

@@ -4,7 +4,7 @@ Author/developer: Pierpaolo Basile <pierpaolo.basile@gmail.com>
 
 If you use this software in writing scientific papers, or you use this
 software in any other medium serving scientists or students (e.g. web-sites,
-CD-ROMs) please include the citation:
+CD-ROMs) please include the citation (for ENGLISH Word Sense Disambiguation):
 
 P. Basile, M. Degemmis, A. Gentile, P. Lops, and G. Semeraro. UNIBA:
 JIGSAW Algorithm for Word Sense Disambiguation. In Proceedings of the 4th ACL
@@ -23,7 +23,23 @@ Association for Computational Linguistics (ACL), 2007.
   url       = {http://www.aclweb.org/anthology/S/S07/S07-1088}
 }
 
-The paper is available on line: http://aclweb.org/anthology-new/S/S07/S07-1088.pdf
+the paper is available on line: http://aclweb.org/anthology-new/S/S07/S07-1088.pdf
+
+(for ITALIAN Word Sense Disambiguation):
+
+P. Basile and G. Semeraro. JIGSAW: An algorithm for word sense disambiguation.
+Intelligenza Artificiale, 4(2):53–54, 2007
+
+@article{EVALITA2007,
+  author    = {Pierpaolo Basile and
+               Giovanni Semeraro},
+  title     = {{JIGSAW}: An Algorithm for Word Sense Disambiguation},
+  journal   = {Intelligenza Artificiale},
+  volume    = {4},
+  number    = {2},
+  year      = {2007},
+  pages     = {53-54},
+}
 
 -------------------------------------------------------------------------------------------
 
@@ -70,6 +86,23 @@ In order to use WordNet, you must configure the file ./resources/wn_file_propert
 
 Change the attribute value and set the directory in which the WordNet dictionary is installed.
 
+*MULTIWORDNET
+
+JIGSAW for Italian disambiguation relies on MultiWordNet as knowledge base. You can obtain MultiWordNet from http://multiwordnet.fbk.eu/
+
+MultiWordNet is provided as SQL data. You must modify resource/jigsawIT.properties file with your database information. Moreover, you must add
+to the classpath the JDBC driver.
+
+JIGSAW needs some NLP steps to work, in particular lemmatization and pos-tagging. The lemmatization implemented in JIGSAW relies on the morph-it resource 
+that you can download from http://dev.sslmit.unibo.it/linguistics/morph-it.php . You must modify the property nlp.morph-it in the resource/jigsawIT.properties file.
+The pos-tagging is implemented via OpenNLP API, but you must provide the model data.
+You can find information about how to build pos-tag-model for OpenNLP here: http://opennlp.apache.org/documentation/1.5.2-incubating/manual/opennlp.html#tools.postagger 
+WE CANNOT PROVIDE POS-TAG MODEL DUE TO LICENSE RESTRICTIONS. The resource/jigsawIT.properties contains the property nlp.posTagModel where you must specify the path of
+the pos-tag model.
+IMPORTANT: the pos-tag model must rely on a specific tags set, in particular tags related to nouns should start with the character 'S', verbs with 'V', adverbs with 'B' and
+adjectives with 'A'. Otherwise, you must modify the class jigsaw.wn.Tag2MWN to re-map your pos-tags set.
+
+
 *EXAMPLES
 
 The test directory contains some input/output files in different formats. Some command lines are reported here:
@@ -80,8 +113,4 @@ The test directory contains some input/output files in different formats. Some c
 
 ./jigsaw.sh -cf ../resources/jigsaw.properties -i ../test/tagged -m tagged -o ../test/tagged.jigsaw
 
-	 
-
-
-
-
+In order to run JIGSAW on italian documents, you can use jigsaw_it.sh script.

@@ -113,7 +113,7 @@ public class JIGSAWit {
             MWNapi mwnApi = new MWNapi(dbaccess);
             mwnApi.init();
             this.multiWordNet = new MultiWordNet(mwnApi);
-            this.textProcessing = new SimpleItalianTextProcessing(new File(props.getProperty("nlp.posTagModel")), new File(props.getProperty("nlp.stopWordFile")));
+            this.textProcessing = new SimpleItalianTextProcessing(new File(props.getProperty("nlp.posTagModel")), new File(props.getProperty("nlp.stopWordFile")), new File(props.getProperty("nlp.morph-it")));
         } catch (Exception ex) {
             Logger.getLogger(JIGSAWit.class.getName()).log(Level.SEVERE, "ERROR to init JIGSAW algorithm (check config file)", ex);
         }
@@ -837,7 +837,7 @@ public class JIGSAWit {
                     t.setPosTag(pt);
                     t.setToken(tokens[i]);
                     t.setStem(textProcessing.stem(t.getToken()));
-                    t.setLemma(multiWordNet.lemmatize(tokens[i], pt));
+                    t.setLemma(textProcessing.lemmatize(tokens[i], pt));
                     t.setSyn(null);
                     t.setSyns(null);
                     String[] syns = multiWordNet.getAllSynsetByWord(t.getToken(), t.getPosTag());
@@ -1148,7 +1148,7 @@ public class JIGSAWit {
         for (int i = 0; i < tokens.length; i++) {
             stems.add(textProcessing.stem(tokens[i]));
             String wnPos = Tag2MWN.getPos(pos.get(i));
-            lemmas.add(multiWordNet.lemmatize(tokens[i], wnPos));
+            lemmas.add(textProcessing.lemmatize(tokens[i], wnPos));
         }
         int i = 0;
         List<String> ngram = new ArrayList<String>();
@@ -1220,7 +1220,7 @@ public class JIGSAWit {
         for (int i = 0; i < tokens.length; i++) {
             stems[i] = textProcessing.stem(tokens[i]);
             String wnPos = Tag2MWN.getPos(pos[i]);
-            lemmas[i] = multiWordNet.lemmatize(tokens[i], wnPos);
+            lemmas[i] = textProcessing.lemmatize(tokens[i], wnPos);
         }
         TokenGroup tg = this.getToken(tokens, pos, stems, lemmas, true);
         setSyn(tg);
@@ -1248,7 +1248,7 @@ public class JIGSAWit {
         for (int i = 0; i < tokens.length; i++) {
             stems[i] = textProcessing.stem(tokens[i]);
             String wnPos = Tag2MWN.getPos(pos[i]);
-            lemmas[i] = multiWordNet.lemmatize(tokens[i], wnPos);
+            lemmas[i] = textProcessing.lemmatize(tokens[i], wnPos);
         }
         TokenGroup tg = this.getToken(tokens, pos, stems, lemmas, true);
         setSyn(tg);
@@ -1274,7 +1274,7 @@ public class JIGSAWit {
         String[] lemmas = new String[tokens.length];
         for (int i = 0; i < tokens.length; i++) {
             stems[i] = textProcessing.stem(tokens[i]);
-            lemmas[i] = multiWordNet.lemmatize(tokens[i], posTag[i]);
+            lemmas[i] = textProcessing.lemmatize(tokens[i], posTag[i]);
         }
         TokenGroup tg = this.getToken(tokens, posTag, stems, lemmas, false);
         setSyn(tg);
