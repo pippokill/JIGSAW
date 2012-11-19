@@ -31,6 +31,8 @@
    LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
    NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+   * 
+   * GNU GENERAL PUBLIC LICENSE - Version 3, 29 June 2007
  **/
 package jigsaw.utils;
 
@@ -38,7 +40,7 @@ import java.util.Properties;
 
 /**
  * Split command line arguments and convert them in a Properties JAVA object
- * @author pierpaolo
+ * @author  Basile Pierpaolo
  */
 public class CommandUtils {
 

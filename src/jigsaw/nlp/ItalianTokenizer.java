@@ -29,6 +29,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
+ * GNU GENERAL PUBLIC LICENSE - Version 3, 29 June 2007
  */
 
 package jigsaw.nlp;
@@ -39,8 +40,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- *
- * @author pierpaolo
+ * This class implements a simple tokenizer for Italian
+ * @author  Basile Pierpaolo
  */
 public class ItalianTokenizer {
     
@@ -50,6 +51,7 @@ public class ItalianTokenizer {
     public ItalianTokenizer() {
     }
     
+    //TO DO improve tokenization in next release
     public String[] tokenize(String text) {
         List<String> tokens = new ArrayList<String>();
         Matcher matcher = tokenRegex.matcher(text);

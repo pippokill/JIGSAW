@@ -4,7 +4,9 @@ Author/developer: Pierpaolo Basile <pierpaolo.basile@gmail.com>
 
 If you use this software in writing scientific papers, or you use this
 software in any other medium serving scientists or students (e.g. web-sites,
-CD-ROMs) please include the citation (for ENGLISH Word Sense Disambiguation):
+CD-ROMs) please include the following citation.
+
+1) for ENGLISH Word Sense Disambiguation:
 
 P. Basile, M. Degemmis, A. Gentile, P. Lops, and G. Semeraro. UNIBA:
 JIGSAW Algorithm for Word Sense Disambiguation. In Proceedings of the 4th ACL
@@ -23,9 +25,9 @@ Association for Computational Linguistics (ACL), 2007.
   url       = {http://www.aclweb.org/anthology/S/S07/S07-1088}
 }
 
-the paper is available on line: http://aclweb.org/anthology-new/S/S07/S07-1088.pdf
+The paper is available on line: http://aclweb.org/anthology-new/S/S07/S07-1088.pdf
 
-(for ITALIAN Word Sense Disambiguation):
+2) for ITALIAN Word Sense Disambiguation:
 
 P. Basile and G. Semeraro. JIGSAW: An algorithm for word sense disambiguation.
 Intelligenza Artificiale, 4(2):53–54, 2007
@@ -46,7 +48,8 @@ Intelligenza Artificiale, 4(2):53–54, 2007
 JIGSAW is a knowledge-based Word Sense Disambiguation (WSD) system that attempts to disambiguate all words in a text by exploiting WordNet senses.
 The main assumption is that a speciﬁc strategy for each Part-Of-Speech (POS) is better than a single strategy.
 
-In order to run JIGSAW, you must execute the script jigsaw.sh in the ./bin directory. The script requires the following parameters:
+In order to run JIGSAW, you must execute the script jigsaw.sh in the ./bin directory. 
+The script requires the following parameters:
 
 -cf <configuration file>, the configuration file is available in /resources/jigsaw.properties
 
@@ -54,7 +57,7 @@ In order to run JIGSAW, you must execute the script jigsaw.sh in the ./bin direc
 
 -o <output file>, the file in which you want to save the output. This parameter is optional, the standard output is used if you omit it
 
--m tokenized|tagged, the format of the input text. tokenized, one token per line. tagged, one token per line with pos-tag. This parameter 
+-m tokenized|tagged, the format of the input text. tokenized: one token per line. tagged: one token per line with pos-tag. This parameter 
 is optional, non-tokenized text is used if you omit it
 
 *CONFIGURATION FILE
@@ -113,4 +116,4 @@ The test directory contains some input/output files in different formats. Some c
 
 ./jigsaw.sh -cf ../resources/jigsaw.properties -i ../test/tagged -m tagged -o ../test/tagged.jigsaw
 
-In order to run JIGSAW on italian documents, you can use jigsaw_it.sh script.
+In order to run JIGSAW on Italian documents, you can use the jigsaw_it.sh script.

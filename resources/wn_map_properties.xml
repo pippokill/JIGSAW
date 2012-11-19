@@ -36,7 +36,7 @@
             </param>
         </param>
         <param name="file_type" value="net.sf.extjwnl.princeton.file.PrincetonObjectDictionaryFile"/>
-        <param name="dictionary_path" value="/home/pierpaolo/WordNet/3.0/map/"/>
+        <param name="dictionary_path" value="/home/user/WordNet/3.0/map/"/>
     </dictionary>
     <resource class="PrincetonResource"/>
 </jwnl_properties>

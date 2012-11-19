@@ -29,6 +29,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
+ * GNU GENERAL PUBLIC LICENSE - Version 3, 29 June 2007
  */
 package jigsaw.nlp;
 
@@ -44,9 +45,9 @@ import org.tartarus.snowball.ext.italianStemmer;
 
 /**
  * This class implements the following NLP steps: tokenization, pos-tagging,
- * stemming and lemmatizer
+ * stemming and lemmatization for Italian
  *
- * @author pierpaolo
+ * @author  Basile Pierpaolo
  */
 public class SimpleItalianTextProcessing {
 

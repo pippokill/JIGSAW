@@ -31,6 +31,8 @@
    LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
    NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    
+   GNU GENERAL PUBLIC LICENSE - Version 3, 29 June 2007
  **/
 
 package jigsaw;
@@ -1542,7 +1544,8 @@ public class JIGSAW {
     }
 
     private static void usage() {
-        System.out.println("JIGSAW algorithm for Word Sense Disambiguation - ver. 0.10");
+        System.out.println("JIGSAW algorithm for Word Sense Disambiguation - ver. 1.00b");
+        System.out.println("GNU GENERAL PUBLIC LICENSE - Version 3, 29 June 2007");
         System.out.println("Developed by Pierpaolo Basile <pierpaolo.basile@gmail.com> - 2012");
         System.out.println("Usage: -cf <configuration file> -i <input file> -o <output file> -m tokenized|tagged");
         System.out.println("\t-o is optional, if it's missing JIGSAW uses standard output");
