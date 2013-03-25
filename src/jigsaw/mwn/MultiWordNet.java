@@ -13,9 +13,9 @@
  * this list of conditions and the following disclaimer in the documentation
  * and/or other materials provided with the distribution.
  *
- * Neither the name of the University of Bari nor the names of its
- * contributors may be used to endorse or promote products derived from this
- * software without specific prior written permission.
+ * Neither the name of the University of Bari nor the names of its contributors
+ * may be used to endorse or promote products derived from this software without
+ * specific prior written permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
@@ -34,7 +34,9 @@
 package jigsaw.mwn;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import jigsaw.wn.WnNode;
@@ -50,13 +52,11 @@ public class MultiWordNet {
      * Max depth of relations.
      */
     public static int MAX_DEPTH = 16;
-    private MWNapi mwn = null;
+    private MWNapi_ext mwn = null;
 
-    public MultiWordNet(MWNapi mwn) {
+    public MultiWordNet(MWNapi_ext mwn) {
         this.mwn = mwn;
     }
-
-   
 
     /**
      * Compute the min-distance between two synsets
@@ -155,9 +155,9 @@ public class MultiWordNet {
     private MWNSynset returnSynset(String offset) {
         try {
             MWNSynset s = mwn.getItalianSynset(offset);
-            if (s == null) {
-                s = mwn.getEnglishSynset(offset);
-            }
+            /*if (s == null) {
+             s = mwn.getEnglishSynset(offset);
+             }*/
             return s;
         } catch (Exception ex) {
             Logger.getLogger(MultiWordNet.class.getName()).log(Level.SEVERE, "Error to return synset: " + offset, ex);
@@ -318,32 +318,34 @@ public class MultiWordNet {
      * @return List of {@link nlp.wordNet.types.WnNode}
      */
     public List<WnNode> getAllRelationNode(String offset, int pointerType, int depth, int start_depth) {
-        List<WnNode> result = new ArrayList<WnNode>();
+        Set<WnNode> result = new HashSet<WnNode>();
         try {
             MWNSynset s = this.returnSynset(offset);
             if (s == null) {
                 Logger.getLogger(MultiWordNet.class.getName()).log(Level.WARNING, "Error in getAllRelationNode (synset null): {0}", offset);
-                return result;
+                return new ArrayList<WnNode>(result);
             }
             MWNPointer[] pt = s.getPointer(pointerType);
             if (pt == null || pt.length == 0) {
                 //pointer null skip
-                return result;
+                return new ArrayList<WnNode>(result);
             }
             for (int i = 0; i < pt.length; i++) {
                 WnNode node = new WnNode();
                 node.setDepth(start_depth - depth + 1);
                 node.setOffset(pt[i].getTarget());
-                result.add(node);
-                if (depth > 0) {
-                    result.addAll(getAllRelationNode(node.getOffset(), pointerType, depth - 1, start_depth));
+                if (!result.contains(node)) {
+                    result.add(node);
+                    if (depth > 0) {
+                        result.addAll(getAllRelationNode(node.getOffset(), pointerType, depth - 1, start_depth));
+                    }
                 }
             }
 
-            return result;
+            return new ArrayList<WnNode>(result);
         } catch (Exception ex) {
             Logger.getLogger(MultiWordNet.class.getName()).log(Level.SEVERE, "Error in getAllRelationNode (synset null): " + offset, ex);
-            return result;
+            return new ArrayList<WnNode>(result);
         }
 
     }

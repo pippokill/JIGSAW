@@ -41,6 +41,7 @@ import jigsaw.data.Token;
 import jigsaw.data.TokenGroup;
 import jigsaw.mwn.MWNType;
 import jigsaw.mwn.MWNapi;
+import jigsaw.mwn.MWNapi_ext;
 import jigsaw.mwn.MultiWordNet;
 import jigsaw.nlp.SimpleItalianTextProcessing;
 import jigsaw.utils.CommandUtils;
@@ -111,7 +112,7 @@ public class JIGSAWit {
             this.posTagNotation = Boolean.valueOf(props.getProperty("wsd.posTagNotation")).booleanValue();
             this.shortOutput = Boolean.valueOf(props.getProperty("wsd.shortOutput")).booleanValue();
             DBAccess dbaccess = new DBAccess(props);
-            MWNapi mwnApi = new MWNapi(dbaccess);
+            MWNapi_ext mwnApi = new MWNapi_ext(dbaccess);
             mwnApi.init();
             this.multiWordNet = new MultiWordNet(mwnApi);
             this.textProcessing = new SimpleItalianTextProcessing(new File(props.getProperty("nlp.posTagModel")), new File(props.getProperty("nlp.stopWordFile")), new File(props.getProperty("nlp.morph-it")));
